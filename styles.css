@@ -21,102 +21,118 @@ For all other text, if not specified above, any approximate font size is accepta
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    outline: none;
 }
 
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #ffffff;
     color: #333;
+    outline: none;
+    border: none;
 }
 
 .container {
-    width: 80%;
+    width: 100%;
     margin: auto;
     overflow: hidden;
 }
 
-/* Header - Sticky */
 header {
     background-color: #f0f0f0;
     text-align: center;
-    padding: 30px 0 20px 0;
+    padding: 50px 0 60px;
     border-bottom: 1px solid #e0e0e0;
     position: sticky;
     top: 0;
     z-index: 1000;
     transition: all 0.3s ease;
+    width: 100%;
+    max-width: 100%;
 }
 
 header h1 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    margin-top: -15px;
+    margin-left: 60px;
 }
 
 nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 60px;
+    gap: 240px;
+    margin: 0;
+    padding: 0;
+    margin-left: 100px;
+    margin-top: 40px;
 }
 
 nav a {
     text-decoration: none;
-    color: #999;
-    font-size: 16px;
+    color: #777;
+    font-size: 18px;
+    font-weight: 500;
+    display: inline-block;
+    transform: translateY(10px);
 }
 
 nav a:hover {
-    color: #999;
+    color: #777;
     text-decoration: none;
 }
 
-/* Main Content */
 main {
-    max-width: 1200px;
+    max-width: 86%;
     margin: 0 auto;
-    background-color: white;
+    background-color: #ffffff;
+    padding: 0;
+    box-shadow: none;
 }
 
-/* Hero Image */
 .hero-image {
     width: 100%;
     margin-bottom: 40px;
+    padding: 0;
+    background-color: #ffffff;
 }
 
 .hero-image img {
     width: 100%;
-    height: 400px;
+    height: 550px;
     object-fit: cover;
     display: block;
+    margin: 0;
 }
 
-/* Content Section */
 .content {
-    padding: 0 50px 60px 50px;
+    padding: 0 0 20px 0;
+    background-color: #ffffff;
 }
 
 .content h2 {
-    font-size: 20px;
+    font-size: 25px;
     color: #6f5eff;
     margin-bottom: 40px;
     font-weight: normal;
 }
 
-/* Room Grid */
 .room-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 60px;
+    gap: 55px;
+    margin: 0 0 60px 0;
+    padding: 0;
+    background-color: #ffffff;
 }
 
-/* Room Cards */
 .room-card {
-    background: white;
+    background: #ffffff;
     border: 1px solid #e0e0e0;
     border-radius: 12px;
     overflow: hidden;
@@ -126,7 +142,7 @@ main {
 
 .room-card img {
     width: 100%;
-    height: 450px;
+    height: 650px;
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 20px;
@@ -139,10 +155,9 @@ main {
     font-weight: normal;
 }
 
-/* Browse Buttons */
 .browse-btn {
     background-color: #6f5eff;
-    color: white;
+    color: #fff;
     border: none;
     padding: 12px 30px;
     border-radius: 6px;
@@ -155,76 +170,115 @@ main {
     background-color: #555;
 }
 
-/* Footer */
 footer {
-    background-color: white;
-    padding: 60px 0 40px 0;
-    border-top: 1px solid #e0e0e0;
+    background-color: #f7f7f7;
+    padding: 60px 0 220px 0;
+    border-top: none;
+    width: 100%;
+    max-width: 100%;
 }
 
 .footer-content {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0 100px;
+    padding: 0 20px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 40px;
+    margin-left: 125px;
 }
 
 .footer-section h4 {
-    font-size: 14px;
+    font-size: 20px;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 28px;
     font-weight: bold;
 }
 
 .footer-section p {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 8px;
-    cursor: pointer;
-    transition: color 0.3s ease;
+    font-size: 16px;
+    line-height: 2;
+    margin-bottom: 18px;
+    cursor: default;
+    text-decoration: none;
+    font-weight: 400;
+    color: #333;
 }
 
-.footer-section p:hover {
-    color: #6f5eff;
+.footer-section strong {
+    font-weight: 700;
+    color: #333;
 }
 
-/* Follow Button */
+.footer-section:first-child p:hover {
+    text-decoration: none;
+}
+
+.footer-section:nth-child(2) p:hover,
+.footer-section:nth-child(3) p:hover,
+.footer-section:nth-child(4) p:hover {
+    text-decoration: underline;
+}
+
+/* follow button */
 .follow-btn {
     background-color: #6f5eff;
-    color: white;
+    color: #fff;
     border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-size: 14px;
+    padding: 14px 24px;
+    border-radius: 28px;
+    font-size: 18px;
     font-family: Arial, sans-serif;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     cursor: pointer;
-    margin-top: 15px;
-    transition: all 0.3s ease;
+    margin-top: 20px;
 }
 
-.follow-btn:hover {
-    background-color: #5a4dd6;
-    transform: translateY(-2px);
+.follow-btn .btn-emoji {
+    font-size: 20px;
+    line-height: 1;
 }
 
-/* Responsive */
+.follow-btn:hover,
+.follow-btn:focus,
+.follow-btn:active {
+    background-color: #6f5eff;
+    transform: none;
+    outline: none;
+}
+
+.follow-btn svg,
+.follow-btn .heart-icon,
+.follow-btn span:first-child {
+    color: #ff69b4;
+}
+
+/* labels on their own line for first two items */
+.footer-section:first-child p:nth-of-type(1) strong::after,
+.footer-section:first-child p:nth-of-type(2) strong::after {
+    content: "";
+    display: block;
+    margin-top: 6px;
+}
+
+/* responsive */
 @media (max-width: 768px) {
     nav ul {
         gap: 30px;
         flex-wrap: wrap;
     }
-    
+
     .content {
         padding: 0 40px 60px 40px;
     }
-    
+
     .room-grid {
         grid-template-columns: 1fr;
         gap: 20px;
     }
-    
+
     .footer-content {
         padding: 0 40px;
         grid-template-columns: repeat(2, 1fr);
@@ -237,11 +291,11 @@ footer {
         flex-direction: column;
         gap: 15px;
     }
-    
+
     .content {
         padding: 0 20px 60px 20px;
     }
-    
+
     .footer-content {
         padding: 0 20px;
         grid-template-columns: 1fr;
