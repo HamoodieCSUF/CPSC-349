@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { createDeck, shuffleDeck, dealCards, getRankDisplayName } from './utils/cardUtils';
 import { 
   checkForBooks, 
@@ -160,6 +160,35 @@ function App() {
     // Play shuffle sound
     soundManager.playShuffle();
   }, []);
+
+  // Effect to handle player having no cards on their turn
+  useEffect(() => {
+    if (!gameStarted || gameOver || isProcessing || !isPlayerTurn) return;
+    
+    // If player has no cards
+    if (playerHand.length === 0) {
+      // Try to draw from deck
+      if (deck.length > 0) {
+        const drawResult = drawCard(deck, playerHand);
+        setPlayerHand(drawResult.hand);
+        setDeck(drawResult.deck);
+        addMessage(`You drew a card to refill your hand.`);
+        soundManager.playCardDraw();
+      } else {
+        // No cards to draw, skip to AI turn (or end game)
+        if (aiHand.length === 0) {
+          // Game over - both hands empty, deck empty
+          setGameOver(true);
+          addMessage('🏁 Game Over!');
+          soundManager.playGameOver();
+        } else {
+          // Skip player turn, AI still has cards
+          addMessage(`You have no cards. Skipping to AI's turn.`);
+          setIsPlayerTurn(false);
+        }
+      }
+    }
+  }, [gameStarted, gameOver, isProcessing, isPlayerTurn, playerHand, deck, aiHand, addMessage]);
 
   // Check if game should end
   const checkGameEnd = useCallback((currentDeck, pHand, aHand, pBooks, aBooks) => {
@@ -416,6 +445,24 @@ function App() {
         }
 
         // Check for game end
+        if (checkGameEnd(newDeck, newPlayerHand, newAiHand, currentPlayerBooks, newAiBooks)) {
+          setIsProcessing(false);
+          setAskPopup(null);
+          return;
+        }
+
+        // Handle empty player hand before their turn starts
+        if (newPlayerHand.length === 0 && newDeck.length > 0) {
+          const drawResult = drawCard(newDeck, newPlayerHand);
+          newPlayerHand = drawResult.hand;
+          newDeck = drawResult.deck;
+          setPlayerHand(newPlayerHand);
+          setDeck(newDeck);
+          addMessage(`You drew a card to refill your hand.`);
+          soundManager.playCardDraw();
+        }
+
+        // Check again if game should end after drawing
         if (checkGameEnd(newDeck, newPlayerHand, newAiHand, currentPlayerBooks, newAiBooks)) {
           setIsProcessing(false);
           setAskPopup(null);
