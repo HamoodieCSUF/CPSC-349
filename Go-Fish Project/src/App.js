@@ -626,6 +626,8 @@ function App() {
           winner={determineWinner(playerBooks, aiBooks)}
           onPlayAgain={handlePlayAgain}
           onMainMenu={handleMainMenu}
+          playerName={playerName}
+          playerAvatar={playerAvatar}
         />
       )}
 
