@@ -317,8 +317,9 @@ function App() {
     let rankToAsk;
     if (difficulty === 'hard' && aiMemory.length > 0) {
       // Check if AI has any ranks that player previously asked for
+      // But exclude ranks we already failed to get recently
       const playerWantedRanks = aiMemory.filter(r => 
-        newAiHand.some(card => card.rank === r)
+        newAiHand.some(card => card.rank === r) && !newFailedAsks.includes(r)
       );
       if (playerWantedRanks.length > 0) {
         // Ask for a rank the player wanted (they might still have some)
